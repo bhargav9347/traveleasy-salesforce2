@@ -1,0 +1,105 @@
+<template>
+    <lightning-card title="Trip Wallet and Budget Tracker" icon-name="custom:custom63">
+        <div class="slds-var-p-around_medium">
+            <template if:true={isLoading}>
+                <lightning-spinner alt-text="Loading Trip Wallet"></lightning-spinner>
+            </template>
+
+            <template if:true={walletData}>
+                <!-- Header Stats -->
+                <div class="slds-grid slds-gutters slds-var-m-bottom_medium">
+                    <div class="slds-col slds-size_1-of-4">
+                        <div class="metric-card slds-box slds-text-align_center">
+                            <span class="slds-text-color_weak slds-text-title_caps">Estimated Budget</span>
+                            <div class="slds-text-heading_medium slds-var-m-top_x-small">
+                                ₹{walletData.estimatedCost}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <div class="metric-card slds-box slds-text-align_center">
+                            <span class="slds-text-color_weak slds-text-title_caps">Actual Spent</span>
+                            <div class="slds-text-heading_medium slds-var-m-top_x-small">
+                                ₹{walletData.actualCost}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <div class="metric-card slds-box slds-text-align_center">
+                            <span class="slds-text-color_weak slds-text-title_caps">Remaining Budget</span>
+                            <div class="slds-text-heading_medium slds-var-m-top_x-small">
+                                ₹{walletData.remainingBudget}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-4">
+                        <div class="metric-card slds-box slds-text-align_center">
+                            <span class="slds-text-color_weak slds-text-title_caps">Variance %</span>
+                            <div class="slds-text-heading_medium slds-var-m-top_x-small">
+                                {walletData.variancePercentage}%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expense Status Summary -->
+                <div class="slds-var-m-bottom_medium">
+                    <div class="slds-grid slds-grid_align-spread slds-var-m-bottom_xx-small">
+                        <span class="slds-text-title_bold">Budget Utilization</span>
+                        <span class="slds-text-color_weak">Reimbursement Status: <lightning-badge label={walletData.reimbursementStatus}></lightning-badge></span>
+                    </div>
+                    <lightning-progress-bar value={utilizationPercentage} variant="circular" size="large"></lightning-progress-bar>
+                </div>
+
+                <!-- Expense Items List -->
+                <div class="slds-var-m-top_medium">
+                    <h3 class="slds-text-heading_small slds-var-m-bottom_small">Expense Breakdown</h3>
+                    <template if:true={hasExpenseItems}>
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th scope="col"><div class="slds-truncate" title="Category">Category</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="Vendor">Vendor</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="Amount">Amount</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="Date">Date</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="Policy Result">Policy Result</div></th>
+                                    <th scope="col"><div class="slds-truncate" title="Receipt">Receipt</div></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={walletData.expenseItems} for:item="item">
+                                    <tr key={item.Id}>
+                                        <td><div class="slds-truncate">{item.Expense_Category__c}</div></td>
+                                        <td><div class="slds-truncate">{item.Vendor__c}</div></td>
+                                        <td><div class="slds-truncate">₹{item.Amount__c}</div></td>
+                                        <td><div class="slds-truncate">{item.Expense_Date__c}</div></td>
+                                        <td>
+                                            <lightning-badge label={item.Policy_Result__c}></lightning-badge>
+                                        </td>
+                                        <td>
+                                            <template if:true={item.Receipt_Attached__c}>
+                                                <span class="slds-badge slds-theme_success">Attached</span>
+                                            </template>
+                                            <template if:false={item.Receipt_Attached__c}>
+                                                <span class="slds-badge slds-theme_warning">Missing</span>
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template if:false={hasExpenseItems}>
+                        <p class="slds-text-color_weak slds-text-align_center slds-var-p-around_medium">No expense items submitted yet for this trip.</p>
+                    </template>
+                </div>
+            </template>
+
+            <template if:true={error}>
+                <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                    <h2>Error loading Trip Wallet data: {error}</h2>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

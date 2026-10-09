@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paid_By__c</fullName>
+    <externalId>false</externalId>
+    <label>Paid By</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Employee Personal</fullName>
+                <default>true</default>
+                <label>Employee Personal</label>
+            </value>
+            <value>
+                <fullName>Corporate Card</fullName>
+                <default>false</default>
+                <label>Corporate Card</label>
+            </value>
+            <value>
+                <fullName>Company Direct</fullName>
+                <default>false</default>
+                <label>Company Direct</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

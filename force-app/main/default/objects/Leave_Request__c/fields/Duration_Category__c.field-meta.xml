@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Duration_Category__c</fullName>
+    <externalId>false</externalId>
+    <label>Duration Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Short Leave</fullName>
+                <default>false</default>
+                <label>Short Leave</label>
+            </value>
+            <value>
+                <fullName>Medium Leave</fullName>
+                <default>false</default>
+                <label>Medium Leave</label>
+            </value>
+            <value>
+                <fullName>Long Leave</fullName>
+                <default>false</default>
+                <label>Long Leave</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

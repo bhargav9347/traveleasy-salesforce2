@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <label>Lodging Policy</label>
+    <protected>false</protected>
+        <values>
+            <field>Category__c</field>
+            <value xsi:type="xs:string">Lodging</value>
+        </values>
+        <values>
+            <field>Max_Amount_Limit__c</field>
+            <value xsi:type="xs:double">8000.0</value>
+        </values>
+        <values>
+            <field>Receipt_Required_Threshold__c</field>
+            <value xsi:type="xs:double">0.0</value>
+        </values>
+        <values>
+            <field>Require_Receipt__c</field>
+            <value xsi:type="xs:boolean">true</value>
+        </values>
+        <values>
+            <field>Department__c</field>
+            <value xsi:type="xs:string">All</value>
+        </values>
+        <values>
+            <field>Is_Active__c</field>
+            <value xsi:type="xs:boolean">true</value>
+        </values>
+        <values>
+            <field>Rule_Description__c</field>
+            <value xsi:type="xs:string">Hotel lodging capped at 8000. Receipt required.</value>
+        </values>
+</CustomMetadata>
